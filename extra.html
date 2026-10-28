@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.features-list {
+  display: flex;
+  flex-direction: row;   /* Default: vertical */
+  gap: 10px;
+  background: #eef2ff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Feature item style */
+.feature-item {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* ✅ Jab screen chhoti ho (1000px se kam), side by side kar do */
+@media (max-width: 1400px) {
+  .features-list {
+    flex-direction: column;      /* Horizontal */
+    justify-content: center;
+    flex-wrap: wrap;          /* Wrap if needed */
+  }
+  .feature-item {
+    flex: 1 1 45%;            /* Each takes around half width */
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="features-list">
+  <div class="feature-item">Drag & Drop Builder</div>
+  <div class="feature-item">Bootstrap 5 Templates</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designmodo - Responsive Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(to bottom, #0e231c, #132a22);
+            color: #fff;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: rgba(14, 35, 28, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: #fff !important;
+            text-decoration: none;
+            font-size: 1.25rem;
+        }
+
+        .navbar-brand img {
+            width: 35px;
+            height: 35px;
+            margin-right: 12px;
+            object-fit: contain;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            color: #cccccc !important;
+            font-weight: 500;
+            padding: 10px 15px !important;
+            transition: color 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover, .nav-link:focus {
+            color: #27ae60 !important;
+        }
+
+        .nav-link i {
+            margin-left: 6px;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-menu {
+            background-color: #0c1e18;
+            border: 1px solid #1a3b30;
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-item {
+            color: #cccccc;
+            padding: 10px 20px;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #1a3b30;
+            color: #ffffff;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 5px 10px;
+            color: #fff;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .user-dropdown {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #27ae60;
+        }
+
+        /* Login button styling */
+        .login-btn {
+            background: transparent;
+            border: 2px solid #27ae60;
+            color: #27ae60;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: none; /* Hidden by default */
+        }
+
+        .login-btn:hover {
+            background: #27ae60;
+            color: #fff;
+        }
+
+        /* 200% zoom layout */
+        @media (min-width: 200%) {
+            .navbar-container {
+                max-width: 100%;
+            }
+            
+            .nav-center {
+                display: none !important;
+            }
+            
+            .navbar-brand {
+                font-size: 2.5rem;
+            }
+            
+            .navbar-brand img {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .login-btn {
+                display: block;
+                font-size: 1.8rem;
+                padding: 16px 40px;
+            }
+            
+            .user-dropdown {
+                display: none;
+            }
+        }
+
+        /* Simulated 200% zoom for demo purposes */
+        @media (min-width: 1600px) {
+            .navbar-container {
+                max-width: 100%;
+            }
+            
+            .nav-center {
+                display: none !important;
+            }
+            
+            .navbar-brand {
+                font-size: 2.5rem;
+            }
+            
+            .navbar-brand img {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .login-btn {
+                display: block;
+                font-size: 1.8rem;
+                padding: 16px 40px;
+            }
+            
+            .user-dropdown {
+                display: none;
+            }
+        }
+
+        /* Content styling */
+        .header-content {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            font-weight: 700;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #27ae60, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            color: #a0b1ac;
+            line-height: 1.6;
+        }
+
+        .platforms {
+            padding: 40px 20px;
+        }
+
+        .platform-card {
+            background: #132a22;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+            height: 100%;
+            border: 1px solid #1a3b30;
+            transition: transform 0.3s;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .platform-icon {
+            font-size: 2.5rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .platform-card h3 {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .platform-card p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            .nav-center {
+                display: none;
+            }
+            
+            .mobile-nav-center {
+                display: block;
+                width: 100%;
+                padding: 20px;
+                background: #0c1e18;
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+            }
+            
+            .nav-item {
+                margin: 8px 0;
+            }
+            
+            .login-btn {
+                display: block;
+                font-size: 1rem;
+                padding: 6px 15px;
+            }
+            
+            .user-dropdown {
+                display: none;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .mobile-nav-center {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-content p {
+                font-size: 1rem;
+            }
+            
+            .platform-card {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+            
+            .navbar-brand img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="https://designmodo.com/wp-content/themes/designmodo/img/logo-icon.png" alt="Designmodo Logo">
+                designmodo
+            </a>
+
+            <!-- Centered Navigation (Desktop) -->
+            <div class="nav-center">
+                <ul class="nav-menu">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Apps <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Postcards</a></li>
+                            <li><a class="dropdown-item" href="#">Slides</a></li>
+                            <li><a class="dropdown-item" href="#">Startup</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Articles <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Website Design</a></li>
+                            <li><a class="dropdown-item" href="#">Email Design</a></li>
+                            <li><a class="dropdown-item" href="#">Website Examples</a></li>
+                            <li><a class="dropdown-item" href="#">Email Marketing</a></li>
+                            <li><a class="dropdown-item" href="#">Website Tools</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right: Log In Button (visible at 200% zoom) -->
+            <a href="#" class="login-btn">Log In</a>
+
+            <!-- Right: User Dropdown (visible at normal zoom) -->
+            <div class="user-dropdown">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <img src="https://ui-avatars.com/api/?name=User&background=27ae60&color=fff" alt="User" class="user-avatar">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Billing</a></li>
+                        <li><a class="dropdown-item" href="#">Subscription</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#">Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Centered Navigation (Mobile) -->
+        <div class="collapse" id="mobileNav">
+            <div class="mobile-nav-center">
+                <ul class="nav-menu">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Apps <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Postcards</a></li>
+                            <li><a class="dropdown-item" href="#">Slides</a></li>
+                            <li><a class="dropdown-item" href="#">Startup</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Articles <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Website Design</a></li>
+                            <li><a class="dropdown-item" href="#">Email Design</a></li>
+                            <li><a class="dropdown-item" href="#">Website Examples</a></li>
+                            <li><a class="dropdown-item" href="#">Email Marketing</a></li>
+                            <li><a class="dropdown-item" href="#">Website Tools</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Content -->
+    <div class="container">
+        <div class="header-content">
+            <h1>Level up email & web designs faster</h1>
+            <p>Create stunning designs with our easy-to-use tools and resources. Perfect for designers, marketers, and developers.</p>
+        </div>
+
+        <!-- Platform Cards -->
+        <div class="platforms">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="platform-card">
+                        <div class="platform-icon">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <h3>Android</h3>
+                        <p>Design and prototype Android apps with our comprehensive tools and resources. Perfect for Material Design.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="platform-card">
+                        <div class="platform-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <h3>Google</h3>
+                        <p>Create material design interfaces that follow Google's design principles. Enhance your UX with our templates.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="platform-card">
+                        <div class="platform-icon">
+                            <i class="fab fa-microsoft"></i>
+                        </div>
+                        <h3>Microsoft</h3>
+                        <p>Design Fluent UI systems for Microsoft's ecosystem of products. From Windows apps to Office integrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+                navbar.style.backgroundColor = 'rgba(14, 35, 28, 0.98)';
+            } else {
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.25)';
+                navbar.style.backgroundColor = 'rgba(14, 35, 28, 0.95)';
+            }
+        });
+
+        // Handle zoom level changes
+        function checkZoomLevel() {
+            const loginBtn = document.querySelector('.login-btn');
+            const userDropdown = document.querySelector('.user-dropdown');
+            const navCenter = document.querySelector('.nav-center');
+            
+            // Check if zoom is approximately 200% or higher
+            if (window.devicePixelRatio >= 1.8 || window.outerWidth / window.innerWidth > 1.8) {
+                loginBtn.style.display = 'block';
+                userDropdown.style.display = 'none';
+                navCenter.style.display = 'none';
+            } else {
+                loginBtn.style.display = 'none';
+                userDropdown.style.display = 'flex';
+                navCenter.style.display = 'flex';
+            }
+        }
+
+        // Initial check
+        checkZoomLevel();
+        
+        // Check on resize
+        window.addEventListener('resize', checkZoomLevel);
+    </script>
+</body>
+</html>

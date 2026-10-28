@@ -1,0 +1,23 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 84 84" style="enable-background:new 0 0 84 84;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#9DD6E3;}
+	.st2{fill:#3F72AB;}
+	.st3{fill:#00A9D1;}
+	.st4{fill:#2191C4;}
+</style>
+<g id="Слой_2">
+	<circle class="st0" cx="42" cy="42" r="42"/>
+</g>
+<g id="Слой_1">
+	<g>
+		<path class="st1" d="M65,19v30.7H49.7V65H19l0-15.3l0,0V34.3h15.3V19H65z"/>
+		<polygon class="st2" points="19,65 34.3,65 34.3,49.7 19,49.7 		"/>
+		<polygon class="st3" points="49.7,49.7 65,49.7 65,34.3 49.7,34.3 		"/>
+		<polygon class="st3" points="34.3,34.3 49.7,34.3 49.7,19 34.3,19 		"/>
+		<polygon class="st4" points="34.3,49.7 49.7,49.7 49.7,34.3 34.3,34.3 		"/>
+		<polygon class="st2" points="49.7,34.3 65,34.3 65,19 49.7,19 		"/>
+	</g>
+</g>
+</svg>
